@@ -1,49 +1,43 @@
-const menuToggle = document.querySelector(".menu-toggle");
-const primaryNav = document.querySelector("#primary-nav");
-
-menuToggle.addEventListener("click", () => {
-  const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
-  menuToggle.setAttribute("aria-expanded", String(!isOpen));
-  primaryNav.classList.toggle("is-open", !isOpen);
-});
-
-primaryNav.addEventListener("click", (event) => {
-  if (event.target.closest("a")) {
-    menuToggle.setAttribute("aria-expanded", "false");
-    primaryNav.classList.remove("is-open");
-  }
-});
-
 const gallerySlides = [
   {
     src: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/2023_Range_Rover_Evoque_%28L551%29_IMG_3586.jpg/1920px-2023_Range_Rover_Evoque_%28L551%29_IMG_3586.jpg",
     alt: "White 2023 Range Rover Evoque, rear three-quarter view",
     caption: "White · rear three-quarter view",
     paint: "white",
+    author: "Alexander Migl",
+    source: "https://commons.wikimedia.org/wiki/File:2023_Range_Rover_Evoque_(L551)_IMG_3586.jpg",
   },
   {
     src: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/2023_Range_Rover_Evoque_%28L551%29_IMG_3588.jpg/1920px-2023_Range_Rover_Evoque_%28L551%29_IMG_3588.jpg",
     alt: "White 2023 Range Rover Evoque, front three-quarter view",
     caption: "White · front three-quarter view",
     paint: "white",
+    author: "Alexander Migl",
+    source: "https://commons.wikimedia.org/wiki/File:2023_Range_Rover_Evoque_(L551)_IMG_3588.jpg",
   },
   {
     src: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/2023_Range_Rover_Evoque_%28L551%29_Auto_Zuerich_2023_1X7A1476.jpg/1280px-2023_Range_Rover_Evoque_%28L551%29_Auto_Zuerich_2023_1X7A1476.jpg",
-    alt: "Charcoal 2023 Range Rover Evoque, rear three-quarter view at an auto show",
+    alt: "2023 Range Rover Evoque at Auto Zürich, rear three-quarter view",
     caption: "Charcoal · rear three-quarter view",
     paint: "charcoal",
+    author: "Alexander-93",
+    source: "https://commons.wikimedia.org/wiki/File:2023_Range_Rover_Evoque_(L551)_Auto_Zuerich_2023_1X7A1476.jpg",
   },
   {
     src: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/2022_Range_Rover_Evoque.jpg/1280px-2022_Range_Rover_Evoque.jpg",
-    alt: "Maroon 2022 Range Rover Evoque, front three-quarter view",
+    alt: "2022 Range Rover Evoque, front three-quarter view",
     caption: "Maroon · front three-quarter view",
     paint: "maroon",
+    author: "Calreyn88",
+    source: "https://commons.wikimedia.org/wiki/File:2022_Range_Rover_Evoque.jpg",
   },
   {
     src: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/Range_Rover_Evoque_%28L551%29_1X7A1765.jpg/1280px-Range_Rover_Evoque_%28L551%29_1X7A1765.jpg",
-    alt: "Black Range Rover Evoque, front three-quarter view",
+    alt: "Range Rover Evoque, front three-quarter view",
     caption: "Black · front three-quarter view",
     paint: "black",
+    author: "Alexander-93",
+    source: "https://commons.wikimedia.org/wiki/File:Range_Rover_Evoque_(L551)_1X7A1765.jpg",
   },
 ];
 
@@ -54,13 +48,19 @@ const galleryCaption = heroVisual.querySelector("[data-gallery-caption]");
 const galleryDots = [...heroVisual.querySelectorAll(".gallery-dot")];
 const paintSwatches = [...heroVisual.querySelectorAll(".paint-swatch")];
 let currentSlide = 0;
+let galleryTransition = 0;
 
 function showSlide(index) {
   currentSlide = (index + gallerySlides.length) % gallerySlides.length;
   const slide = gallerySlides[currentSlide];
-  galleryImage.classList.add("is-changing");
-  galleryImage.src = slide.src;
-  galleryImage.alt = slide.alt;
+  const transitionId = ++galleryTransition;
+  heroVisual.dataset.paintPreview = slide.paint;
+  heroVisual.querySelectorAll(".gallery-image-incoming").forEach((image) => image.remove());
+  const incomingImage = document.createElement("img");
+  incomingImage.className = "gallery-image gallery-image-incoming";
+  incomingImage.alt = "";
+  incomingImage.setAttribute("aria-hidden", "true");
+  incomingImage.dataset.paintPreview = slide.paint;
   galleryCount.textContent = `${String(currentSlide + 1).padStart(2, "0")} / ${String(gallerySlides.length).padStart(2, "0")}`;
   galleryCaption.textContent = slide.caption;
 
@@ -74,13 +74,53 @@ function showSlide(index) {
     swatch.classList.toggle("is-selected", isSelected);
     swatch.setAttribute("aria-pressed", String(isSelected));
   });
+
+  incomingImage.addEventListener("load", () => {
+    if (transitionId !== galleryTransition) {
+    incomingImage.remove();
+    return;
+    }
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    galleryImage.src = slide.src;
+    galleryImage.alt = slide.alt;
+    galleryImage.dataset.paintPreview = slide.paint;
+    galleryImage.dataset.photoAuthor = slide.author;
+    galleryImage.dataset.photoSource = slide.source;
+    galleryImage.dataset.photoLicense = "CC BY-SA 4.0";
+    incomingImage.remove();
+    return;
+    }
+
+    const fade = incomingImage.animate(
+    [
+      { opacity: 0, transform: "scale(1.055)" },
+      { opacity: 1, transform: "scale(1)" },
+    ],
+    { duration: 850, easing: "cubic-bezier(.2,.7,.2,1)", fill: "forwards" },
+    );
+    fade.onfinish = () => {
+    if (transitionId !== galleryTransition) return;
+    galleryImage.src = slide.src;
+    galleryImage.alt = slide.alt;
+    galleryImage.dataset.paintPreview = slide.paint;
+    galleryImage.dataset.photoAuthor = slide.author;
+    galleryImage.dataset.photoSource = slide.source;
+    galleryImage.dataset.photoLicense = "CC BY-SA 4.0";
+    incomingImage.remove();
+    };
+  }, { once: true });
+
+  incomingImage.addEventListener("error", () => {
+    incomingImage.remove();
+    if (transitionId === galleryTransition) {
+    galleryCaption.textContent = "This photo is temporarily unavailable.";
+    }
+  }, { once: true });
+  heroVisual.insertBefore(incomingImage, heroVisual.querySelector(".image-caption"));
+  incomingImage.src = slide.src;
 }
 
-galleryImage.addEventListener("load", () => galleryImage.classList.remove("is-changing"));
-galleryImage.addEventListener("error", () => {
-  galleryImage.classList.remove("is-changing");
-  galleryCaption.textContent = "This photo is temporarily unavailable.";
-});
 heroVisual.querySelector("[data-gallery-prev]").addEventListener("click", () => showSlide(currentSlide - 1));
 heroVisual.querySelector("[data-gallery-next]").addEventListener("click", () => showSlide(currentSlide + 1));
 galleryDots.forEach((dot) => {
@@ -92,26 +132,6 @@ paintSwatches.forEach((swatch) => {
     if (matchingSlide !== -1) showSlide(matchingSlide);
   });
 });
-
-if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  const revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll(".intro-main, .detail-strip, .feature-image, .feature-copy, .ownership-card, .estimate-band > div, .enquiry-copy, .enquiry-form, .visit-inner, .visit-image")
-    .forEach((element, index) => {
-      element.classList.add("reveal");
-      if (element.matches(".ownership-card")) {
-        element.style.setProperty("--reveal-delay", `${index % 3 * 90}ms`);
-      }
-      revealObserver.observe(element);
-    });
-}
 
 const depositRange = document.querySelector("#deposit-range");
 const depositValue = document.querySelector("#deposit-value");
@@ -139,8 +159,6 @@ function updateEstimate() {
 
 depositRange.addEventListener("input", updateEstimate);
 updateEstimate();
-
-document.querySelector("#year").textContent = new Date().getFullYear();
 
 const enquiryForm = document.querySelector("#enquiry-form");
 const formStatus = document.querySelector("#form-status");

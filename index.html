@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#17211f">
     <meta name="description" content="Discover the Range Rover Evoque at Madison Avenue Motors. Explore the vehicle, estimate a payment and arrange a personal test drive.">
+    <meta name="photo-credit" content="Evoque photographs by Alexander Migl, Alexander-93, and Calreyn88 via Wikimedia Commons under CC BY-SA 4.0; full credits in the footer.">
     <title>Range Rover Evoque | Madison Avenue Motors</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="site.js" defer></script>
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -24,6 +26,7 @@
         <span></span><span></span>
       </button>
       <nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
+        <a href="inventory.html">Inventory</a>
         <a href="#the-evoque">The Evoque</a>
         <a href="#ownership">Ownership</a>
         <a href="#visit">Visit us</a>
@@ -43,15 +46,19 @@
           </div>
           <p class="hero-note">A personal introduction, never a hard sell.</p>
         </div>
-        <div class="hero-visual" aria-label="Range Rover Evoque photo gallery">
+        <div class="hero-visual" aria-label="Illustrative SUV color preview" data-paint-preview="white">
           <img
             class="gallery-image"
             src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/2023_Range_Rover_Evoque_%28L551%29_IMG_3586.jpg/1920px-2023_Range_Rover_Evoque_%28L551%29_IMG_3586.jpg"
             alt="White 2023 Range Rover Evoque, rear three-quarter view"
+            data-photo-author="Alexander Migl"
+            data-photo-license="CC BY-SA 4.0"
+            data-photo-source="https://commons.wikimedia.org/wiki/File:2023_Range_Rover_Evoque_(L551)_IMG_3586.jpg"
+            data-paint-preview="white"
             fetchpriority="high">
           <div class="image-caption" aria-live="polite" aria-atomic="true">
             <span data-gallery-count>01 / 05</span>
-            <span data-gallery-caption>White · rear three-quarter view</span>
+            <span data-gallery-caption>White · illustrative SUV preview</span>
           </div>
           <div class="gallery-controls">
             <div class="paint-options" role="group" aria-label="Choose a paint preview">
@@ -73,11 +80,11 @@
               </button>
             </div>
             <div class="gallery-dots" role="group" aria-label="Choose a gallery photo">
-              <button class="gallery-dot is-selected" type="button" data-slide="0" aria-label="Photo 1 of 5" aria-pressed="true"></button>
-              <button class="gallery-dot" type="button" data-slide="1" aria-label="Photo 2 of 5" aria-pressed="false"></button>
-              <button class="gallery-dot" type="button" data-slide="2" aria-label="Photo 3 of 5" aria-pressed="false"></button>
-              <button class="gallery-dot" type="button" data-slide="3" aria-label="Photo 4 of 5" aria-pressed="false"></button>
-              <button class="gallery-dot" type="button" data-slide="4" aria-label="Photo 5 of 5" aria-pressed="false"></button>
+              <button class="gallery-dot is-selected" type="button" data-slide="0" aria-label="White Evoque, rear view" aria-pressed="true"></button>
+              <button class="gallery-dot" type="button" data-slide="1" aria-label="White Evoque, front view" aria-pressed="false"></button>
+              <button class="gallery-dot" type="button" data-slide="2" aria-label="Charcoal Evoque preview" aria-pressed="false"></button>
+              <button class="gallery-dot" type="button" data-slide="3" aria-label="Maroon Evoque preview" aria-pressed="false"></button>
+              <button class="gallery-dot" type="button" data-slide="4" aria-label="Black Evoque preview" aria-pressed="false"></button>
             </div>
             <div class="gallery-arrows">
               <button class="gallery-arrow" type="button" data-gallery-prev aria-label="Previous photo">←</button>
@@ -108,8 +115,8 @@
 
       <section class="vehicle-feature">
         <div class="feature-image">
-          <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/2023_Range_Rover_Evoque_%28L551%29_IMG_3588.jpg/1920px-2023_Range_Rover_Evoque_%28L551%29_IMG_3588.jpg" alt="2023 Range Rover Evoque showing its exterior details" loading="lazy">
-          <span class="photo-tag">THE DETAILS MAKE THE DIFFERENCE</span>
+          <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/2023_Range_Rover_Evoque_%28L551%29_IMG_3588.jpg/1920px-2023_Range_Rover_Evoque_%28L551%29_IMG_3588.jpg" alt="White 2023 Range Rover Evoque, front three-quarter view" data-photo-author="Alexander Migl" data-photo-license="CC BY-SA 4.0" data-photo-source="https://commons.wikimedia.org/wiki/File:2023_Range_Rover_Evoque_(L551)_IMG_3588.jpg" loading="lazy">
+          <span class="photo-tag">ILLUSTRATIVE STOCK PHOTO · NOT AN EVOQUE</span>
         </div>
         <div class="feature-copy">
           <div class="section-kicker section-kicker-light"><span>02</span><span>Made to feel like yours</span></div>
@@ -217,25 +224,40 @@
     </main>
 
     <footer class="site-footer">
-      <a class="wordmark footer-wordmark" href="#top">
-        <span class="wordmark-icon" aria-hidden="true">M</span>
-        <span>MADISON AVENUE<span class="wordmark-sub">MOTORS</span></span>
-      </a>
-      <p>Madison Avenue Motors — independent vehicle specialists. A considered way to find your next car.</p>
-      <div class="footer-contact">
-        <a href="tel:+12125550142">(212) 555-0142</a>
-        <a href="mailto:sales@madisonavenuemotors.example">sales@madisonavenuemotors.example</a>
-        <span>Fictional contact details for this website concept.</span>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a class="wordmark footer-wordmark" href="#top">
+            <span class="wordmark-icon" aria-hidden="true">M</span>
+            <span>MADISON AVENUE<span class="wordmark-sub">MOTORS</span></span>
+          </a>
+          <p>Independent vehicle specialists. A considered way to find your next car.</p>
+        </div>
+        <div class="footer-contact">
+          <span class="footer-heading">GET IN TOUCH</span>
+          <a href="tel:+12125550142">(212) 555-0142</a>
+          <a href="mailto:sales@madisonavenuemotors.example">sales@madisonavenuemotors.example</a>
+          <span class="footer-placeholder">Fictional contact details for this concept.</span>
+        </div>
+        <div class="footer-social" role="group" aria-label="Social profiles coming soon">
+          <span class="footer-heading">FOLLOW ALONG</span>
+          <div class="footer-social-icons">
+            <span class="social-icon" role="img" aria-label="Instagram profile to be added" title="Instagram profile to be added"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle class="social-icon-dot" cx="17.6" cy="6.7" r="1"></circle></svg></span>
+            <span class="social-icon" role="img" aria-label="Facebook profile to be added" title="Facebook profile to be added"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 20v-7h2.4l.4-2.8h-2.8V8.4c0-.8.3-1.4 1.4-1.4h1.5V4.5c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v1.9H8v2.8h2.3v7h3.2Z"></path></svg></span>
+            <span class="social-icon" role="img" aria-label="YouTube channel to be added" title="YouTube channel to be added"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 7.2a2.5 2.5 0 0 0-1.8-1.8C17.6 5 12 5 12 5s-5.6 0-7.2.4A2.5 2.5 0 0 0 3 7.2 26 26 0 0 0 2.6 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C6.4 19 12 19 12 19s5.6 0 7.2-.4a2.5 2.5 0 0 0 1.8-1.8 26 26 0 0 0 .4-4.8 26 26 0 0 0-.4-4.8ZM10 15.2V8.8l5.5 3.2-5.5 3.2Z"></path></svg></span>
+          </div>
+          <span class="footer-placeholder">Social profiles coming soon.</span>
+        </div>
+      </div>
+      <div class="footer-photo-credits" aria-labelledby="photo-credits-heading">
+        <span class="footer-heading" id="photo-credits-heading">VEHICLE PHOTO CREDITS</span>
+        <p><a href="https://commons.wikimedia.org/wiki/File:2023_Range_Rover_Evoque_(L551)_IMG_3586.jpg" rel="license noopener noreferrer">2023 Evoque, rear view</a> and <a href="https://commons.wikimedia.org/wiki/File:2023_Range_Rover_Evoque_(L551)_IMG_3588.jpg" rel="license noopener noreferrer">front view</a> by Alexander Migl; <a href="https://commons.wikimedia.org/wiki/File:2023_Range_Rover_Evoque_(L551)_Auto_Zuerich_2023_1X7A1476.jpg" rel="license noopener noreferrer">Auto Zürich photo</a> and <a href="https://commons.wikimedia.org/wiki/File:Range_Rover_Evoque_(L551)_1X7A1765.jpg" rel="license noopener noreferrer">black Evoque photo</a> by Alexander-93; <a href="https://commons.wikimedia.org/wiki/File:2022_Range_Rover_Evoque.jpg" rel="license noopener noreferrer">2022 Evoque photo</a> by Calreyn88. All via Wikimedia Commons under <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license noopener noreferrer">CC BY-SA 4.0</a>.</p>
       </div>
       <div class="footer-bottom">
-        <span>© <span id="year">2026</span> Madison Avenue Motors.</span>
+        <span>© <span data-current-year>2026</span> Madison Avenue Motors.</span>
         <span>Range Rover and Evoque are trademarks of their respective owners. Madison Avenue Motors is an independent dealership and is not affiliated with or endorsed by Jaguar Land Rover.</span>
         <a href="#top">Back to top ↑</a>
       </div>
-      <p class="demo-note">Website concept. Vehicle pricing, finance estimate, contact details and dealership information are illustrative; replace with verified business content before launch.</p>
-      <p class="demo-note">Vehicle photos: <a href="https://commons.wikimedia.org/wiki/File:2023_Range_Rover_Evoque_(L551)_IMG_3586.jpg" rel="noreferrer">Alexander Migl, 2023 Evoque photo 1</a> and <a href="https://commons.wikimedia.org/wiki/File:2023_Range_Rover_Evoque_(L551)_IMG_3588.jpg" rel="noreferrer">photo 2</a>, via Wikimedia Commons, <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noreferrer">CC BY-SA 4.0</a>.</p>
-      <p class="demo-note">Charcoal Evoque photo: <a href="https://commons.wikimedia.org/wiki/File:2023_Range_Rover_Evoque_(L551)_Auto_Zuerich_2023_1X7A1476.jpg" rel="noreferrer">Alexander-93, 2023 Evoque at Auto Zürich</a>, via Wikimedia Commons, <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noreferrer">CC BY-SA 4.0</a>. Paint names describe these photo previews only; confirm available vehicle colors with the dealership.</p>
-      <p class="demo-note">Maroon Evoque photo: <a href="https://commons.wikimedia.org/wiki/File:2022_Range_Rover_Evoque.jpg" rel="noreferrer">Calreyn88, 2022 Range Rover Evoque</a>, via Wikimedia Commons, <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noreferrer">CC BY-SA 4.0</a>. Black Evoque photo: <a href="https://commons.wikimedia.org/wiki/File:Range_Rover_Evoque_(L551)_1X7A1765.jpg" rel="noreferrer">Alexander-93</a>, via Wikimedia Commons, <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noreferrer">CC BY-SA 4.0</a>.</p>
+      <p class="demo-note">Website concept. Vehicle pricing, finance estimate, contact details and dealership information are illustrative; replace with verified business content before launch. Vehicle photography is credited above. Digital paint previews are illustrative and do not confirm dealership inventory.</p>
     </footer>
   </body>
 </html>
