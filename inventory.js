@@ -26,7 +26,9 @@ filterButtons.forEach((button) => {
       }
     });
 
-    inventoryCount.textContent = `${visibleCount} ${filter === "all" ? "examples" : `${filter} example${visibleCount === 1 ? "" : "s"}`}`;
+    inventoryCount.textContent = filter === "all"
+      ? `${visibleCount} colors`
+      : `${visibleCount} ${filter} Evoque${visibleCount === 1 ? "" : "s"}`;
   });
 });
 

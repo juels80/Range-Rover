@@ -133,33 +133,6 @@ paintSwatches.forEach((swatch) => {
   });
 });
 
-const depositRange = document.querySelector("#deposit-range");
-const depositValue = document.querySelector("#deposit-value");
-const monthlyPayment = document.querySelector("#monthly-payment");
-const vehiclePrice = 39850;
-const annualRate = 0.089;
-const termMonths = 60;
-const monthlyRate = annualRate / 12;
-
-function updateEstimate() {
-  const deposit = Number(depositRange.value);
-  const principal = vehiclePrice - deposit;
-  const payment = principal * monthlyRate / (1 - (1 + monthlyRate) ** -termMonths);
-  depositValue.textContent = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-  }).format(deposit);
-  monthlyPayment.textContent = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-  }).format(payment);
-}
-
-depositRange.addEventListener("input", updateEstimate);
-updateEstimate();
-
 const enquiryForm = document.querySelector("#enquiry-form");
 const formStatus = document.querySelector("#form-status");
 
@@ -178,6 +151,6 @@ enquiryForm.addEventListener("submit", (event) => {
   ].join("\n"));
   const salesEmail = "sales@madisonavenuemotors.example";
 
-  formStatus.textContent = `Opening an email draft to ${salesEmail}. Replace this demo address with your dealership inbox before launch.`;
+  formStatus.textContent = "Opening an email draft to our sales team.";
   window.location.href = `mailto:${salesEmail}?subject=${subject}&body=${body}`;
 });

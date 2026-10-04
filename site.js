@@ -35,7 +35,7 @@ if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-mot
     ".inventory-heading",
     ".inventory-toolbar",
     ".vehicle-card",
-    ".concept-notice",
+    ".inventory-notice",
     ".inventory-cta > *",
     ".breadcrumbs",
     ".vehicle-detail-image",
