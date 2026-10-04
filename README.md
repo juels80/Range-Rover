@@ -31,4 +31,6 @@ The phone number ((212) 555-0142) and `.example` email address are reserved plac
 
 The enquiry form opens a prefilled email to `sales@madisonavenuemotors.example`; it does not submit to or store data on a server. Before launch, change the recipient in `script.js` and preferably connect the form to the dealership's CRM or a secure server-side lead endpoint. Add consent/privacy wording and an appropriate privacy notice for the market where the site operates.
 
+The footer social icons are non-linked visual elements until the dealership's official social profile URLs are available.
+
 For a production dealership site, connect a verified vehicle inventory feed, configure analytics and conversion tracking with consent, publish location and opening hours, and test enquiries on mobile and desktop. Keep listings and pricing current so every campaign leads to a vehicle the sales team can actually show.
