@@ -6,7 +6,9 @@ The visual identity pairs a warm cognac hero and accent with charcoal panels, so
 
 ## View the site
 
-Open `index.html` in a browser. There are no build steps or package dependencies. The vehicle imagery and web fonts are loaded from external services and require an internet connection.
+Live site: https://rangerover-three.vercel.app/
+
+To run it locally, open `index.html` in a browser. There are no build steps or package dependencies. The vehicle imagery and web fonts are loaded from external services and require an internet connection.
 
 Open `inventory.html` to browse and filter Evoque color photography, or `vehicle.html?paint=maroon` to view a color-specific vehicle detail page. Supported colors are `white`, `charcoal`, `maroon`, and `black`. Scroll reveals, gallery image transitions, and responsive color-filter animations use reduced-motion fallbacks when visitors request less motion.
 
